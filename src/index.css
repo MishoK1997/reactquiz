@@ -32,7 +32,9 @@ body {
 
 header {
   margin: 2rem 0;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 header img {
@@ -183,8 +185,7 @@ li{
   list-style: none;
 } */
 
-.answer button:hover,
-.answer button:focus {
+.answer button:hover {
   /* background: linear-gradient(180deg, #bf48f6 0%, #9b50f2 100%); */
   background: #9d5af5;
   color: white;
@@ -260,15 +261,17 @@ li{
   color: #3a2353;
 }
 
-#summary ol {
+#summary ul {
   list-style: none;
   margin: 2rem auto;
   padding: 0;
+  
   text-align: center;
 }
 
 #summary li {
   margin: 2rem 0;
+  list-style-type: none;
 }
 
 #summary h3 {
@@ -283,12 +286,13 @@ li{
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
+  justify-self: center;
 }
 
 #summary .question {
   margin: 0.25rem 0;
   font-size: 1rem;
-  color: #30273a;
+  color :#d8cde8;
 }
 
 #summary .user-answer {
@@ -296,6 +300,8 @@ li{
   font-family: 'Roboto Condensed', sans-serif;
   font-weight: bold;
   color: #251e2f;
+  justify-self: center;
+
 }
 
 #summary .user-answer.correct {
@@ -315,12 +321,15 @@ li{
   display: flex;
   gap: 3rem;
   width: 60%;
+  /* margin: 2rem auto; */
+  
+  justify-content: flex-end;
   margin: 2rem auto;
   padding-bottom: 2rem;
   border-bottom: 2px solid #594276;
 }
 
-#summary-stats p {
+#summary-stats li {
   flex: 1;
   display: flex;
   flex-direction: column;

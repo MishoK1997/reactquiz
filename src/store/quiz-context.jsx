@@ -3,6 +3,7 @@ import questions from '../questions.js';
 
 // const questionIndex = questions.length > 0 ? Math.floor(Math.random() * questions.length) : 0;
 
+
 export const QuizContext = createContext(null);
 
 
@@ -13,9 +14,10 @@ const initialState = {
     skipped: 0,
     answeredCorrectly: 0,
     answeredIncorrectly: 0,
+    userAnswers: []
 }
 
-
+// Reduce function to manage quiz's complex state
 function quizReducer (state, action) {
     switch(action.type){
         case 'START_QUIZ':
@@ -42,14 +44,22 @@ function quizReducer (state, action) {
                 questions: newQuestions
             };
         case 'PICK_ANSWER':
-            const isCorrect = action.id === state.questions[state.currRandQuiz].correctAnswerIndex;
+            const isCorrect = action.id === state.questions[state.currRandQuiz]?.correctAnswerIndex;
             const isSkipped = action.id == undefined;
+            const question = state.questions[state.currRandQuiz]
+
             return {
                 ...state,
                 skipped: !isCorrect && isSkipped ? state.skipped +1 : state.skipped,
                 answeredCorrectly: isCorrect ? state.answeredCorrectly + 1 : state.answeredCorrectly,
                 answeredIncorrectly: !isCorrect && !isSkipped
                  ? state.answeredIncorrectly + 1 : state.answeredIncorrectly,
+                userAnswers: !isSkipped ? [
+                    ...state.userAnswers,
+                     {id: question.id,
+                         text: question.text,
+                     answer:  question.answers[action.id],
+                    isCorrect: (isCorrect)}] : state.userAnswers
             }
             
           default:
@@ -61,6 +71,11 @@ function quizReducer (state, action) {
 
 
 // Main provider for context 
+/**
+ * 
+ * This provider dispatches actions to the reducer function, 
+ * Manages: "Starting logi", "Sets Quiz" and "Allows user to pick answers"
+ */
 export default function QuizContextProvider({children}) {
 
     const [quizState, quizDispatch] = useReducer(quizReducer, initialState)
