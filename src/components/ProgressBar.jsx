@@ -2,10 +2,10 @@
 import { useEffect, useState} from "react";
 
 export default function ProgressBar ({trigger}) {
-    const [ remainingTime, setRemainingTime] = useState(5000);
+    const [ remainingTime, setRemainingTime] = useState(20000);
 
     useEffect(()=> {
-        setRemainingTime(5000);
+        setRemainingTime(20000);
        const interval = setInterval( ()=> {
          console.log("Interval");
          setRemainingTime(prevTime => prevTime - 10);
@@ -17,6 +17,6 @@ export default function ProgressBar ({trigger}) {
        }
      }, [trigger])  
 
-        return (<progress value={remainingTime} max={5000}/>)
+        return (<progress value={remainingTime} max={20000}/>)
 
 }

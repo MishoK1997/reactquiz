@@ -18,7 +18,7 @@ export default function Quiz() {
             const timer = setTimeout(() => {
                 handleCurrRandQuiz()
                 handlePickAnswer(undefined)
-            }, 5000)
+            }, 20000)
             
             return () => { 
                 console.log("Clear timer"),
