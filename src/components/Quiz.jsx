@@ -11,6 +11,7 @@ export default function Quiz() {
     const {handleCurrRandQuiz, quizState, handlePickAnswer} = useContext(QuizContext);
 
     const question = quizState.questions[quizState.currRandQuiz];
+    const timeInterval = 20000;
 
     useEffect(() => {
 
@@ -18,7 +19,7 @@ export default function Quiz() {
             const timer = setTimeout(() => {
                 handleCurrRandQuiz()
                 handlePickAnswer(undefined)
-            }, 20000)
+            }, timeInterval)
             
             return () => { 
                 console.log("Clear timer"),
@@ -48,7 +49,7 @@ export default function Quiz() {
         ?  <form id="quiz" action=''>
                 
             <fieldset id='question'>
-            <ProgressBar trigger={question}/>
+            <ProgressBar trigger={question} timeInterval={timeInterval}/>
                     <legend><h2>{question.text}</h2></legend> 
                     <ul id="answers">
                         {

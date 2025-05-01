@@ -14,7 +14,8 @@ const initialState = {
     skipped: 0,
     answeredCorrectly: 0,
     answeredIncorrectly: 0,
-    userAnswers: []
+    userAnswers: [],
+    questionsLength: questions.length,
 }
 
 // Reduce function to manage quiz's complex state

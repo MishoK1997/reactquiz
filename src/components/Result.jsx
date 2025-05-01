@@ -8,7 +8,7 @@ export default function Result() {
 
     const {quizState} = useContext(QuizContext);
 
-    const percentCal = (num) =>  ((num/7) * 100).toFixed(0);
+    const percentCal = (num) =>  ((num/quizState.questionsLength) * 100).toFixed(0);
 
     const skipped = percentCal(quizState.skipped)
     const answeredCorrectly = percentCal(quizState.answeredCorrectly)
